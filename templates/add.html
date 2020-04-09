@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% extends "getin.html" %}
+
+{% block content %}
+
+<html lang="en">
+
+<head>
+  <title>Add</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <br>
+    <h1 class="text-center">Data Information</h1>
+    <br>
+    <form action="/savedetails" method="post">
+      <!------------------------------------------>
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          <label for="DescriptionOfGoods">Description Of Goods:</label>
+          <input type="text" class="form-control" id="DescriptionOfGoods" placeholder="Enter the Description Of Goods"
+            name="DescriptionOfGoods">
+        </div>
+        <!------------------------------------------>
+        <div class="col-sm-6 form-group">
+          <label for="HSNSAC">HSN/SAC code:</label>
+          <input type="text" class="form-control" id="HSNSAC" placeholder="Enter Item HSNSAC" name="HSNSAC">
+        </div>
+      </div>
+      <!------------------------------------------>
+      <!------------------------------------------>
+      <div class="row">
+        <div class="col-sm-4 form-group">
+          <label for="Qty">Quantity:</label>
+          <input type="text" class="form-control" id="Qty" placeholder="Enter Quantity of Goods Required" name="Qty"
+            required>
+        </div>
+        <!------------------------------------------>
+        <div class="col-sm-4 form-group">
+          <label for="RatePerUnit">Rate/Unit:</label>
+          <input type="text" class="form-control" id="RatePerUnit" placeholder="Enter Rate/Unit" name="RatePerUnit"
+            required>
+        </div>
+        <!------------------------------------------>
+        <div class="col-sm-4 form-group">
+          <label for="Gst">GST:</label>
+          <input type="text" class="form-control" id="Gst" placeholder="Enter GST Rate Applicable" name="Gst" required>
+        </div>
+        <!------------------------------------------>
+      </div>
+      <br>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+      </div>
+    </form>
+    <br>
+    <br><br>
+  </div>
+  {% endblock %}
+</body>
+
+</html>

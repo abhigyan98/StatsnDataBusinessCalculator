@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% extends "getin.html" %}
+
+{% block content %}
+
+<html lang="en">
+
+<head>
+  <title>List</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+  <div style="background:transparent !important" class="jumbotron jumbotron-fluid ">
+    <div class="container">
+
+      <div class="row container">
+        <div class="col-sm-4 lg-4 xs-4"><!--<a class="btn btn-primary" href="/"> Home </a>--> </div>
+        <div class="col-sm-4 lg-4 xs-4"><h1 class="text-center">Bill List</h1></div>
+        <div class="col-sm-4 lg-4 xs-4"></div>
+      </div>
+
+      <br>
+      <div class="" style="overflow: scroll;">
+        <table class="table table-bordered">
+          <thead >
+
+            <td>Description Of Goods</td>
+            <td>HSN/SAC code</td>
+            <td>Quantity</td>
+            <td>Rate/Unit</td>
+            <td>GST</td>
+            <td>Taxable Value</td>
+            <td>CGST</td>
+            <td>SGST</td>
+            <td>Total Amount</td>
+            <td>Delete</td>
+          </thead>
+          {% for row in rows %}
+          <tr>
+            <form action="/deleterecord/{{row[0]}}" method="post">
+
+              <td>{{row[1]}}</td>
+              <td>{{row[2]}}</td>
+              <td>{{row[3]}}</td>
+              <td>{{row[4]}}</td>
+              <td>{{row[5]}}</td>
+              <td>{{row[6]}}</td>
+              <td>{{row[7]}}</td>
+              <td>{{row[8]}}</td>
+              <td>{{row[9]}}</td>
+              <td><button type="submit" class="btn btn-danger" value="Delete">
+                  <i class="far fa-trash-alt"></i>
+                </button></td>
+            </form>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+      <br>
+    </div>
+  </div>
+
+</body>
+
+{% endblock %}
+
+</html>

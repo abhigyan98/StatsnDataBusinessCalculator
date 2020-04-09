@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ledger</title>
+</head>
+
+<body>
+</body>
+
+</html>
+<!--------------------------------------->
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="manifest" href="/manifest.json">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <title>Home</title>
+    <script>
+        if (location.hostname === '192.168.43.1' && location.protocol !== 'https:') {
+            location.href = location.href.replace('http:', 'https:')
+        }
+    </script>
+    <style>
+        #avatar {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            vertical-align: middle;
+            /*float: right;*/
+        }
+        #navbar{
+            background-color: black;
+            position: fixed;
+            width: 100%;
+        }
+        #button{
+            /*animating the buttons*/
+            animation: shake 6s;
+            animation-iteration-count: infinite;
+        }
+        /* this is the main part of the animatio */
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+    </style>
+</head>
+
+<body>
+    <div style="background:transparent !important" class="">
+        <!--
+
+        <div class="">
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark ">
+                <div class="">
+                    <div class="navbar-header ">
+                        <a class="navbar-brand">StatsnData Business Calculator</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item active ">
+                            <a class="nav-link">StatsnData Business Calculator</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="nav-item active ">
+                            <a class="nav-link" href="#"><img class="img-fluid rounded-circle"
+                                    src="//placehold.it/120/ccff00" id="avatar">StatsnData</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div> -->
+        
+            <nav id="navbar">
+                <div class="" style="padding: 8px;">
+                    <a class="navbar-brand" style="color: white;" href="/">StatsnData Calculator</a>
+                    <!--<a class="nav-link" href="#"><img class="img-fluid rounded-circle"
+                        src="//placehold.it/120/ccff00" id="avatar">StatsnData</a>-->
+                        <a href="#">
+                            <p style="color: white; float:right;">StatsnData  <img class="" src="//placehold.it/120/ccff00" id="avatar"></p>
+                        </a>
+                </div>
+            </nav>
+        
+        <br><br><br>
+        {% block content %}
+        <div style="background:transparent !important" class="jumbotron">
+
+            <div class="row" align="center">
+                <div class="col-sm col-md col-lg">
+                    <div class="" style="width: 18rem;">
+
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <br>
+                    <br>
+                    <a href="/add">
+                        <button id="button" class="btn btn-default" style="background-color: white; box-shadow: 0px 0px 10px 0px slategray;">
+                            <div class="" style="width: 18rem; height: 12rem">
+                                <div class="card-body">
+                                    <h2 class="card-title mb-2 text-muted text-center"> <br> Add<br>Details </h2>
+                                </div>
+                            </div>
+                        </button>
+                    </a>
+                </div>
+                <div class="col-sm">
+                    <br>
+                    <br>
+                    <a href="/view">
+                        <button id="button" class="btn btn-default" style="background-color: white; box-shadow: 0px 0px 10px 0px slategray;">
+                            <div class="" style="width: 18rem; height: 12rem">
+                                <div class="card-body">
+                                    <h2 class="card-title mb-2 text-muted text-center"> <br> View<br>Lists </h2>
+                                </div>
+                            </div>
+                        </button>
+                    </a>
+                    
+                </div>
+                <div class="col-sm">
+                    <div class="" style="width: 18rem;">
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+
+</html>

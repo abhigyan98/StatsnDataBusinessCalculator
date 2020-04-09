@@ -1,0 +1,43 @@
+{
+    "manifest_version": 2,
+    "name": "Ledger",
+    "short_name": "Ledger",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#8B78E6",
+    "theme_color": "#FFFFFF",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "/pwa_logo/icon48.png",
+            "type": "image/png",
+            "sizes": "48x48"
+        },
+        {
+            "src": "/pwa_logo/icon72.png",
+            "type": "image/png",
+            "sizes": "72x72"
+        },
+        {
+            "src": "/pwa_logo/icon96.png",
+            "type": "image/png",
+            "sizes": "96x96"
+        },
+        {
+            "src": "/pwa_logo/icon144.png",
+            "type": "image/png",
+            "sizes": "144x144"
+        },
+        {
+            "src": "/pwa_logo/icon196.png",
+            "type": "image/png",
+            "sizes": "196x196"
+        },
+        {
+            "src": "/pwa_logo/icon512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "scope": "/"
+}
