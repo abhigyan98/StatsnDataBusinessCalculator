@@ -38,6 +38,9 @@ def add():
 def saveDetails(): 
     if (request.cookies.get('email')): 
         msg = "msg"  
+        user = loginDB.getUser(request.cookies.get('email'))
+        name = user[0][1]
+        image = user[0][3]
         if request.method == "POST":  
             #database variable names:-
             #DescriptionOfGoods
@@ -56,9 +59,6 @@ def saveDetails():
             RatePerUnit = round(float(request.form.get("RatePerUnit")),2)
             Gst = round(float(request.form.get("Gst")),2)
 
-            #cgst = gst/2
-            #sgst = gst/2
-
             TaxableValue = (RatePerUnit) * float(Qty)
             totaltax = round((TaxableValue*(Gst))/100,2)
             Cgst=round(totaltax/2,2)
@@ -72,17 +72,11 @@ def saveDetails():
             #con.commit()  
             employeedb.addData(DescriptionOfGoods,HSNSAC,Qty,RatePerUnit,Gst,TaxableValue,Cgst,Sgst,TotalAmount,email)
             msg = "Data successfully Added"  
-            return render_template("success.html",msg = msg)
+            return render_template("success.html",msg = msg,email=email,name=name,image=image)
 
-            #except:  
-            #    #con.rollback()  
-            #    msg = "We can not add the Data to the list"  
-            #finally:  
-            #    return render_template("success.html",msg = msg)  
-            #    #con.close()  
         else:
             msg = "We can not add the Data to the list"
-            return render_template("success.html",msg = msg)
+            return render_template("success.html",msg = msg,email=email,name=name,image=image)
     else:
         return redirect(url_for('login'))
  
@@ -109,24 +103,36 @@ def view():
 def deleterecord(row_id):
     if (request.cookies.get('email')):   
         #id = request.form["id"]  
+        user = loginDB.getUser(request.cookies.get('email'))
+        email = user[0][0]
+        name = user[0][1]
+        image = user[0][3]
         employeedb.delete(row_id)
         msg = "record successfully deleted!"
-        return render_template("delete_record.html",msg = msg) 
+        return render_template("delete_record.html",msg = msg,email=email,name=name,image=image) 
     else:
         return redirect(url_for('login'))
 
 @app.route("/edit/<row_id>",methods=["POST"])
 def getdata(row_id):
     if (request.cookies.get('email')):   
+        user = loginDB.getUser(request.cookies.get('email'))
+        email = user[0][0]
+        name = user[0][1]
+        image = user[0][3]
         data = employeedb.getdata(row_id)
-        return render_template("edit.html", data=data)
+        return render_template("edit.html", data=data, name=name, image=image)
     else:
         return redirect(url_for('login'))
 
 
 @app.route("/editdetails/<eid>",methods = ["POST","GET"])  
 def editDetails(eid):
-    if (request.cookies.get('email')):   
+    if (request.cookies.get('email')):
+        user = loginDB.getUser(request.cookies.get('email'))   
+        email = user[0][0]
+        name = user[0][1]
+        image = user[0][3]
         msg = "Data edited successfully!"  
         DescriptionOfGoods = request.form.get("DescriptionOfGoods")
         HSNSAC = request.form.get("HSNSAC") 
@@ -143,8 +149,9 @@ def editDetails(eid):
         Sgst=round(totaltax/2,2)
         TotalAmount = round((TaxableValue + totaltax),2)
         email = request.cookies.get('email')
+        
         employeedb.edit(eid,DescriptionOfGoods,HSNSAC,Qty,RatePerUnit,Gst,TaxableValue,Cgst,Sgst,TotalAmount,email)
-        return render_template("success.html",msg = msg)
+        return render_template("success.html",msg = msg, email=email, name=name, image=image)
         #else:
         #    msg = "We can not add the Data to the list"
         #    return render_template("success.html",msg = msg)
