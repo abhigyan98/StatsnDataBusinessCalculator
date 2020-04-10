@@ -12,7 +12,11 @@
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link rel="manifest" href="/manifest.json">
     <title>StatsnDataBusiness</title>
-    
+    <script>
+        if (location.hostname === 'statsndatabusiness.herokuapp.com' && location.protocol !== 'https:') {
+            location.href = location.href.replace('http:', 'https:')
+        }
+    </script>
     <style>
         /*#flash{
             color: rgba(255, 0, 0, 0.781);
