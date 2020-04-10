@@ -23,5 +23,8 @@ def delete(rid):
     db.execute("DELETE FROM SnDB WHERE id=(?)",(rid,))
     con.commit()
 
+def edit(rid):
+    db.execute("INSERT INTO SnDB VALUES (NULL,?,?,?,?,?,?,?,?,?)",(DescriptionOfGoods,HSNSAC,Qty,RatePerUnit,Gst,TaxableValue,Cgst,Sgst,TotalAmount))
+
 #createTable()
 #con.close()

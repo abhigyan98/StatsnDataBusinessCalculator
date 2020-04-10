@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-    <title>Add</title>
+    <title>Edit</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -22,20 +22,20 @@
 
     <div class="container">
         <br>
-        <h1 class="text-center">Data Information</h1>
+        <h1 class="text-center">Edit Information</h1>
         <br>
-        <form action="/savedetails" method="post">
+        <form action="/edit" method="post">
             <!------------------------------------------>
             <div class="row">
                 <div class="col-sm-6 form-group">
                     <label for="DescriptionOfGoods">Description Of Goods:</label>
                     <input type="text" class="form-control" id="DescriptionOfGoods" placeholder=""
-                        name="DescriptionOfGoods">
+                        name="DescriptionOfGoods" value="{{row[1]}">
                 </div>
                 <!------------------------------------------>
                 <div class="col-sm-6 form-group">
                     <label for="HSNSAC">HSN/SAC code:</label>
-                    <input type="text" class="form-control" id="HSNSAC" placeholder="" name="HSNSAC">
+                    <input type="text" class="form-control" id="HSNSAC" placeholder="" name="HSNSAC" value="{{row[2]}">
                 </div>
             </div>
             <!------------------------------------------>
@@ -43,17 +43,17 @@
             <div class="row">
                 <div class="col-sm-4 form-group">
                     <label for="Qty">Quantity:</label>
-                    <input type="text" class="form-control" id="Qty" placeholder="" name="Qty" required>
+                    <input type="text" class="form-control" id="Qty" placeholder="" name="Qty" value="{{row[3]}" >
                 </div>
                 <!------------------------------------------>
                 <div class="col-sm-4 form-group">
                     <label for="RatePerUnit">Rate/Unit:</label>
-                    <input type="text" class="form-control" id="RatePerUnit" placeholder="" name="RatePerUnit" required>
+                    <input type="text" class="form-control" id="RatePerUnit" placeholder="" name="RatePerUnit" value="{{row[4]}">
                 </div>
                 <!------------------------------------------>
                 <div class="col-sm-4 form-group">
                     <label for="Gst">GST:</label>
-                    <input type="text" class="form-control" id="Gst" placeholder="" name="Gst" required>
+                    <input type="text" class="form-control" id="Gst" placeholder="" name="Gst" value="{{row[5]}">
                 </div>
                 <!------------------------------------------>
             </div>

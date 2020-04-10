@@ -4,7 +4,8 @@ import sqlite3
 import employeedb
  
 
-app = Flask(__name__,static_url_path='')  
+app = Flask(__name__, static_url_path='')  
+app.secret_key = 'this is a secret key'
  
 @app.route("/")  
 def index():  
@@ -82,10 +83,10 @@ def deleterecord(row_id):
     return render_template("delete_record.html",msg = msg)  
 
 @app.route("/edit/<row_id>",methods=["POST"])
-def edit():
-
-
-    return render_template("edit.html")
+def edit(row_id):
+    employeedb.addData(DescriptionOfGoods,HSNSAC,Qty,RatePerUnit,Gst,TaxableValue,Cgst,Sgst,TotalAmount)
+    msg = "Record successfully edited"
+    return render_template("edit.html", msg=msg)
 
 if __name__ == "__main__":  
     app.run(host='0.0.0.0', port=5001, debug=True)
