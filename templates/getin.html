@@ -48,6 +48,11 @@
             /*animating the buttons*/
             animation: shake 6s;
             animation-iteration-count: infinite;
+            background-image: url('/bg2.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
         }
         /* this is the main part of the animatio */
         @keyframes shake {
@@ -63,11 +68,22 @@
             90% { transform: translate(1px, 2px) rotate(0deg); }
             100% { transform: translate(1px, -2px) rotate(-1deg); }
         }
+        #logout{
+            float: right;
+            margin-right: 3%;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            border: none;
+            box-shadow: 0px 0px 10px 0px slategray;
+            padding: 6px;
+        }
     </style>
 </head>
 
 <body>
-    <div style="background:transparent !important" class="">
+    
+    <div style="" class="mainDiv">
         <!--
 
         <div class="">
@@ -91,17 +107,20 @@
             </nav>
         </div> -->
         
-            <nav id="navbar">
-                <div class="" style="padding: 7px;">
-                    <a class="navbar-brand" style="color: white;" href="/">StatsnData Calculator</a>
-                    <!--<a class="nav-link" href="#"><img class="img-fluid rounded-circle"
-                        src="//placehold.it/120/ccff00" id="avatar">StatsnData</a>-->
-                        <a href="#">
-                            <p style="color: white; float:right;">StatsnData  <img class="" src="./img_avatar.png" id="avatar"></p>
-                        </a>
-                </div>
-            </nav>
-        
+        <nav id="navbar">
+            <div class="" style="padding: 7px;">
+                <a class="navbar-brand" style="color: white;" href="/">StatsnData Calculator</a>
+                <!--<a class="nav-link" href="#"><img class="img-fluid rounded-circle"
+                    src="//placehold.it/120/ccff00" id="avatar">StatsnData</a>-->
+                    <a href="#">
+                        <p style="color: white; float:right;">{{ name }}  <img class="" src="/profilePics/{{ image }}" id="avatar"></p>
+                    </a>
+            </div>
+        </nav>
+        <br><br><br>
+        <a href="/logout">
+            <button id="logout"><i class="fas fa-sign-out-alt" style="color: tomato;"> Logout</i></button>
+        </a>
         <br><br><br>
         {% block content %}
         <div style="background:transparent !important" class="jumbotron">
@@ -116,10 +135,10 @@
                     <br>
                     <br>
                     <a href="/add">
-                        <button id="button" class="btn btn-default" style="background-color: white; box-shadow: 0px 0px 10px 0px slategray;">
+                        <button id="button" class="btn btn-default" style="box-shadow: 0px 0px 10px 0px slategray;">
                             <div class="" style="width: 18rem; height: 12rem">
                                 <div class="card-body">
-                                    <h2 class="card-title mb-2 text-muted text-center"> <br> Add<br>Details </h2>
+                                    <h2 class="card-title mb-2 text-muted text-center" style="color:white !important;"> <br> Add<br>Details </h2>
                                 </div>
                             </div>
                         </button>
@@ -129,10 +148,10 @@
                     <br>
                     <br>
                     <a href="/view">
-                        <button id="button" class="btn btn-default" style="background-color: white; box-shadow: 0px 0px 10px 0px slategray;">
+                        <button id="button" class="btn btn-default" style="box-shadow: 0px 0px 10px 0px slategray;">
                             <div class="" style="width: 18rem; height: 12rem">
                                 <div class="card-body">
-                                    <h2 class="card-title mb-2 text-muted text-center"> <br> View<br>Lists </h2>
+                                    <h2 class="card-title mb-2 text-muted text-center" style="color:white !important;"> <br> View<br>Lists </h2>
                                 </div>
                             </div>
                         </button>
@@ -147,9 +166,9 @@
                 </div>
             </div>
         </div>
-        {% endblock %}
+        
     </div>
-
+    {% endblock %}
     <script src="/app.js"></script>
 </body>
 
