@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
-    "name": "Ledger",
-    "short_name": "Ledger",
+    "name": "StatsnDataBusiness",
+    "short_name": "SnDBusiness",
     "icons": [
         {
             "src": "/pwa_logo/icon48.png",
@@ -36,7 +36,7 @@
     ],
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#8B78E6",
+    "background_color": "#65aea8",
     "theme_color": "#FFFFFF",
     "orientation": "portrait",
     "scope": "/"
