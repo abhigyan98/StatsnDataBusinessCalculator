@@ -13,6 +13,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="manifest" href="/manifest.json"  crossorigin="use-credentials" >
+
     <style>
 
     </style>
@@ -24,18 +26,18 @@
         <br>
         <h1 class="text-center">Edit Information</h1>
         <br>
-        <form action="/edit" method="post">
+        <form action="/editdetails/{{data[0][0]}}" method="post">
             <!------------------------------------------>
             <div class="row">
                 <div class="col-sm-6 form-group">
                     <label for="DescriptionOfGoods">Description Of Goods:</label>
                     <input type="text" class="form-control" id="DescriptionOfGoods" placeholder=""
-                        name="DescriptionOfGoods" value="{{row[1]}">
+                        name="DescriptionOfGoods" value="{{data[0][1]}}">
                 </div>
                 <!------------------------------------------>
                 <div class="col-sm-6 form-group">
                     <label for="HSNSAC">HSN/SAC code:</label>
-                    <input type="text" class="form-control" id="HSNSAC" placeholder="" name="HSNSAC" value="{{row[2]}">
+                    <input type="text" class="form-control" id="HSNSAC" placeholder="" name="HSNSAC" value="{{data[0][2]}}">
                 </div>
             </div>
             <!------------------------------------------>
@@ -43,17 +45,17 @@
             <div class="row">
                 <div class="col-sm-4 form-group">
                     <label for="Qty">Quantity:</label>
-                    <input type="text" class="form-control" id="Qty" placeholder="" name="Qty" value="{{row[3]}" >
+                    <input type="text" class="form-control" id="Qty" placeholder="" name="Qty" value="{{data[0][3]}}" >
                 </div>
                 <!------------------------------------------>
                 <div class="col-sm-4 form-group">
                     <label for="RatePerUnit">Rate/Unit:</label>
-                    <input type="text" class="form-control" id="RatePerUnit" placeholder="" name="RatePerUnit" value="{{row[4]}">
+                    <input type="text" class="form-control" id="RatePerUnit" placeholder="" name="RatePerUnit" value="{{data[0][4]}}">
                 </div>
                 <!------------------------------------------>
                 <div class="col-sm-4 form-group">
                     <label for="Gst">GST:</label>
-                    <input type="text" class="form-control" id="Gst" placeholder="" name="Gst" value="{{row[5]}">
+                    <input type="text" class="form-control" id="Gst" placeholder="" name="Gst" value="{{data[0][5]}}">
                 </div>
                 <!------------------------------------------>
             </div>
@@ -62,8 +64,11 @@
                 <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
             </div>
         </form>
+        
     </div>
     {% endblock %}
+    <script src="/app.js"></script>
+
 </body>
 
 </html>

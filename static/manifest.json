@@ -2,11 +2,6 @@
     "manifest_version": 2,
     "name": "Ledger",
     "short_name": "Ledger",
-    "start_url": "/",
-    "display": "standalone",
-    "background_color": "#8B78E6",
-    "theme_color": "#FFFFFF",
-    "orientation": "portrait",
     "icons": [
         {
             "src": "/pwa_logo/icon48.png",
@@ -39,5 +34,10 @@
             "sizes": "512x512"
         }
     ],
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#8B78E6",
+    "theme_color": "#FFFFFF",
+    "orientation": "portrait",
     "scope": "/"
 }

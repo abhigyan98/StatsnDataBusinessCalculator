@@ -23,8 +23,13 @@ def delete(rid):
     db.execute("DELETE FROM SnDB WHERE id=(?)",(rid,))
     con.commit()
 
-def edit(rid):
-    db.execute("INSERT INTO SnDB VALUES (NULL,?,?,?,?,?,?,?,?,?)",(DescriptionOfGoods,HSNSAC,Qty,RatePerUnit,Gst,TaxableValue,Cgst,Sgst,TotalAmount))
+def edit(rid,DescriptionOfGoods,HSNSAC,Qty,RatePerUnit,Gst,TaxableValue,Cgst,Sgst,TotalAmount):
+    db.execute("UPDATE SnDB SET DescriptionOfGoods=(?),HSNSAC=(?),Qty=(?),RatePerUnit=(?),Gst=(?),TaxableValue=(?),Cgst=(?),Sgst=(?),TotalAmount=(?) WHERE id=(?)",(DescriptionOfGoods,HSNSAC,Qty,RatePerUnit,Gst,TaxableValue,Cgst,Sgst,TotalAmount,rid))
+    con.commit()
 
+def getdata(rid):
+    db.execute("SELECT * FROM SnDB WHERE id=(?)",(rid,))
+    data = db.fetchall()
+    return data
 #createTable()
 #con.close()
