@@ -25,7 +25,7 @@
         crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link rel="manifest" href="/manifest.json"  crossorigin="use-credentials" >
-    <title> Home </title>
+    <title> Home</title>
     <script>
         if (location.hostname === 'statsndatabusiness.herokuapp.com' && location.protocol !== 'https:') {
             location.href = location.href.replace('http:', 'https:')
@@ -70,20 +70,20 @@
         }
         #logout{
             float: right;
-            margin-right: 3%;
+            margin-right: 0%;
             -moz-border-radius: 30px;
             -webkit-border-radius: 30px;
             border-radius: 30px;
             border: none;
             box-shadow: 0px 0px 10px 0px slategray;
-            padding: 6px;
+            padding: 10px;
         }
     </style>
 </head>
 
 <body>
     
-    <div style="" class="mainDiv">
+    <div  class="mainDiv">
         <!--
 
         <div class="">
@@ -108,20 +108,20 @@
         </div> -->
         
         <nav id="navbar">
-            <div class="" style="padding: 7px;">
-                <a class="navbar-brand" style="color: white;" href="/">StatsnData Calculator</a>
+            <div class="" style="padding: 8px;">
+                <!--<a class="navbar-brand" style="color: white;" href="/">StatsnData Calculator</a>-->
                 <!--<a class="nav-link" href="#"><img class="img-fluid rounded-circle"
                     src="//placehold.it/120/ccff00" id="avatar">StatsnData</a>-->
-                    <a href="#">
-                        <p style="color: white; float:right;">{{ name }}  <img class="" src="/profilePics/{{ image }}" id="avatar"></p>
+                    <a href="/">
+                        <p style="color: white; float:left; font-size: larger;"><img class="" src="/profilePics/{{ image }}" id="avatar"> {{ name }} </p>                    </a>
+                    <a href="/logout">
+                        <button id="logout"><i class="fas fa-sign-out-alt" style="color: tomato;"> Logout</i></button>
                     </a>
             </div>
         </nav>
-        <br><br><br>
-        <a href="/logout">
-            <button id="logout"><i class="fas fa-sign-out-alt" style="color: tomato;"> Logout</i></button>
-        </a>
-        <br><br><br>
+        <br><br>
+        
+        <br><br>
         {% block content %}
         <div style="background:transparent !important" class="jumbotron">
 
