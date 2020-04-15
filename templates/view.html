@@ -44,7 +44,8 @@
             <td>Description Of Goods</td>
             <td>HSN/SAC code</td>
             <td>Quantity</td>
-            <td>Rate/Unit</td>
+            <td>Exclusive Rate/Unit</td>
+            <td>Inclusive Rate/Unit</td>
             <td>GST</td>
             <td>Taxable Value</td>
             <td>CGST</td>
@@ -64,6 +65,7 @@
             <td>{{row[7]}}</td>
             <td>{{row[8]}}</td>
             <td>{{row[9]}}</td>
+            <td>{{row[10]}}</td>
             <form action="/edit/{{row[0]}}" method="post">
               <td><button type="submit" class="btn btn-primary" value="Edit">
                 <i class="fas fa-pen"></i>                

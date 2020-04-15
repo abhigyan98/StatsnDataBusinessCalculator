@@ -90,7 +90,7 @@ def logout():
 #request.cookies.get pulls the email cookie from browser
 #all the below functions have requested cookie as if condition else redirected to login panel
 #reason being we remove access from entering website using the urls shown
-#hence removing un authorized access
+#hence removing unauthorized access
 @app.route("/add")  
 def add():  
     if (request.cookies.get('email')):
@@ -104,8 +104,8 @@ def add():
     else:
         return redirect(url_for('login'))
 
-@app.route("/savedetails",methods = ["POST","GET"])  
-def saveDetails(): 
+@app.route("/savedetails/exc",methods = ["POST","GET"])  
+def saveDetailsExc(): 
     if (request.cookies.get('email')): 
         msg = "msg"  
         user = loginDB.getUser(request.cookies.get('email'))
@@ -125,18 +125,27 @@ def saveDetails():
 
             DescriptionOfGoods = request.form.get("DescriptionOfGoods")
             HSNSAC = request.form.get("HSNSAC") 
-            Qty = request.form.get("Qty")
-            RatePerUnit = round(float(request.form.get("RatePerUnit")),2)
+            Qty = (request.form.get("Qty"))
+            ExcRatePerUnit = round(float(request.form.get("ExcRatePerUnit")),2)
             Gst = round(float(request.form.get("Gst")),2)
-
-            TaxableValue = round(((RatePerUnit) * float(Qty)),2)
+            IncRatePerUnit = round((ExcRatePerUnit + (ExcRatePerUnit*Gst)/100),2)
+            
+            TaxableValue = round(((ExcRatePerUnit) * float(Qty)),2)
             totaltax = round((TaxableValue*(Gst))/100,2)
             Cgst=round(totaltax/2,2)
             Sgst=round(totaltax/2,2)
             TotalAmount = round((TaxableValue + totaltax),2)
+
+            #exclRate = round((RatePerUnit - (RatePerUnit*Gst/100)),2)
+            #TaxableValue = round(((exclRate) * float(Qty)),2)
+            #totaltax = round(((RatePerUnit*float(Qty))-TaxableValue),2)
+            #Cgst=round(totaltax/2,2)
+            #Sgst=round(totaltax/2,2)
+            #TotalAmount = round((TaxableValue + totaltax),2)#
+
             email = request.cookies.get('email')
             
-            employeedb.addData(DescriptionOfGoods,HSNSAC,Qty,RatePerUnit,Gst,TaxableValue,Cgst,Sgst,TotalAmount,email)
+            employeedb.addData(DescriptionOfGoods,HSNSAC,Qty,ExcRatePerUnit,IncRatePerUnit,Gst,TaxableValue,Cgst,Sgst,TotalAmount,email)
             msg = "Data successfully Added"  
             return render_template("success.html",msg = msg,email=email,name=name,image=image)
         else:
@@ -144,7 +153,62 @@ def saveDetails():
             return render_template("success.html",msg = msg,email=email,name=name,image=image)
     else:
         return redirect(url_for('login'))
- 
+
+#####################################################
+
+@app.route("/savedetails/inc",methods = ["POST","GET"])  
+def saveDetailsInc(): 
+    if (request.cookies.get('email')): 
+        msg = "msg"  
+        user = loginDB.getUser(request.cookies.get('email'))
+        name = user[0][1]
+        image = user[0][3]
+        if request.method == "POST":  
+            #database variable names:-
+            #DescriptionOfGoods
+            #HSNSAC
+            #Qty
+            #RatePerUnit
+            #Gst
+            #TaxableValue
+            #Cgst
+            #Sgst
+            #TotalAmount
+
+            DescriptionOfGoods = request.form.get("DescriptionOfGoods")
+            HSNSAC = request.form.get("HSNSAC") 
+            Qty = (request.form.get("Qty"))
+            IncRatePerUnit = round(float(request.form.get("IncRatePerUnit")),2)
+            Gst = round(float(request.form.get("Gst")),2)
+            ExcRatePerUnit = round(((IncRatePerUnit*100)/(100+Gst)),2)
+            
+            TaxableValue = round(((ExcRatePerUnit) * float(Qty)),2)
+            totaltax = round((TaxableValue*(Gst))/100,2)
+            Cgst=round(totaltax/2,2)
+            Sgst=round(totaltax/2,2)
+            TotalAmount = round((TaxableValue + totaltax),2)
+
+            #exclRate = round((RatePerUnit - (RatePerUnit*Gst/100)),2)
+            #TaxableValue = round(((exclRate) * float(Qty)),2)
+            #totaltax = round(((RatePerUnit*float(Qty))-TaxableValue),2)
+            #Cgst=round(totaltax/2,2)
+            #Sgst=round(totaltax/2,2)
+            #TotalAmount = round((TaxableValue + totaltax),2)#
+
+            email = request.cookies.get('email')
+            
+            employeedb.addData(DescriptionOfGoods,HSNSAC,Qty,ExcRatePerUnit,IncRatePerUnit,Gst,TaxableValue,Cgst,Sgst,TotalAmount,email)
+            msg = "Data successfully Added"  
+            return render_template("success.html",msg = msg,email=email,name=name,image=image)
+        else:
+            msg = "We can not add the Data to the list"
+            return render_template("success.html",msg = msg,email=email,name=name,image=image)
+    else:
+        return redirect(url_for('login'))
+
+#################################################
+
+
 @app.route("/view")  
 def view():  
     if (request.cookies.get('email')): 
@@ -186,7 +250,6 @@ def getdata(row_id):
     else:
         return redirect(url_for('login'))
 
-
 @app.route("/editdetails/<eid>",methods = ["POST","GET"])  
 def editDetails(eid):
     if (request.cookies.get('email')):
@@ -197,23 +260,28 @@ def editDetails(eid):
         msg = "Data edited successfully!"  
         DescriptionOfGoods = request.form.get("DescriptionOfGoods")
         HSNSAC = request.form.get("HSNSAC") 
-        Qty = request.form.get("Qty")
-        RatePerUnit = round(float(request.form.get("RatePerUnit")),2)
+        Qty = float(request.form.get("Qty"))
+        ExcRatePerUnit = round(float(request.form.get("ExcRatePerUnit")),2)
         Gst = round(float(request.form.get("Gst")),2)
-
-        TaxableValue = round(((RatePerUnit) * float(Qty)),2)
+        IncRatePerUnit = round((ExcRatePerUnit + (ExcRatePerUnit*Gst)/100),2)
+        
+        TaxableValue = round(((ExcRatePerUnit) * float(Qty)),2)
         totaltax = round((TaxableValue*(Gst))/100,2)
         Cgst=round(totaltax/2,2)
         Sgst=round(totaltax/2,2)
         TotalAmount = round((TaxableValue + totaltax),2)
-        email = request.cookies.get('email')
-        
-        employeedb.edit(eid,DescriptionOfGoods,HSNSAC,Qty,RatePerUnit,Gst,TaxableValue,Cgst,Sgst,TotalAmount,email)
+
+        #exclRate = round((RatePerUnit - (RatePerUnit*Gst/100)),2)
+        #TaxableValue = round(((exclRate) * float(Qty)),2)
+        #totaltax = round(((RatePerUnit*float(Qty))-TaxableValue),2)
+        #Cgst=round(totaltax/2,2)
+        #Sgst=round(totaltax/2,2)
+        #TotalAmount = round((TaxableValue + totaltax),2)
+    
+        employeedb.edit(eid,DescriptionOfGoods,HSNSAC,Qty,ExcRatePerUnit,IncRatePerUnit, Gst,TaxableValue,Cgst,Sgst,TotalAmount,email)
         return render_template("success.html",msg = msg, email=email, name=name, image=image)
     else:
         return redirect(url_for('login'))
-
-
 
 
 if __name__ == "__main__":  

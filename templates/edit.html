@@ -26,7 +26,6 @@
 </head>
 
 <body>
-
     <div class="container">
         <br>
         <h1 class="text-center">Edit Information</h1>
@@ -36,8 +35,7 @@
             <div class="row">
                 <div class="col-sm-6 form-group">
                     <label for="DescriptionOfGoods">Description Of Goods:</label>
-                    <input type="text" class="form-control" id="DescriptionOfGoods" placeholder=""
-                        name="DescriptionOfGoods" value="{{data[0][1]}}">
+                    <input type="text" class="form-control" id="DescriptionOfGoods" placeholder="" name="DescriptionOfGoods" value="{{data[0][1]}}">
                 </div>
                 <!------------------------------------------>
                 <div class="col-sm-6 form-group">
@@ -54,13 +52,13 @@
                 </div>
                 <!------------------------------------------>
                 <div class="col-sm-4 form-group">
-                    <label for="RatePerUnit">Rate/Unit:</label>
-                    <input type="text" class="form-control" id="RatePerUnit" placeholder="" name="RatePerUnit" value="{{data[0][4]}}">
+                    <label for="ExcRatePerUnit">Exclusive Rate/Unit:</label>
+                    <input type="text" class="form-control-plaintext" id="ExcRatePerUnit" placeholder="" name="ExcRatePerUnit" value="{{data[0][4]}}" readonly>
                 </div>
                 <!------------------------------------------>
                 <div class="col-sm-4 form-group">
                     <label for="Gst">GST:</label>
-                    <input type="text" class="form-control" id="Gst" placeholder="" name="Gst" value="{{data[0][5]}}">
+                    <input type="text" class="form-control-plaintext" id="Gst" placeholder="" name="Gst" value="{{data[0][6]}}" readonly>
                 </div>
                 <!------------------------------------------>
             </div>

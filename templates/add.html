@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% extends "getin.html" %}
 
-
+{% block content %}
 
 <html lang="en">
 
@@ -9,64 +9,147 @@
   <title>Add</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="/pwa_logo/icon48.png" type="image/png">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  <link rel="manifest" href="/manifest.json"  crossorigin="use-credentials" >
+  <link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
 
   <style>
+    #exclusiveRate{
 
+    }
+    #inclusiveRate{
+
+    }
   </style>
+  <script>
+    $(document).ready(function(){
+      $("#exclusiveRate").hide();
+      $("#exc").click(function(){
+        $("#inc").removeClass("active");
+        $(this).addClass("active");
+        $("#inclusiveRate").hide();
+        $("#exclusiveRate").fadeIn();
+      });
+      $("#inc").click(function(){
+        $("#exc").removeClass("active");
+        $(this).addClass("active");
+        $("#exclusiveRate").hide();
+        $("#inclusiveRate").fadeIn();
+      });
+    });
+  </script>
 </head>
 
 <body>
-  {% block content %}
+
   <div class="container">
     <br>
     <h1 class="text-center">Data Information</h1>
     <br>
-    <form action="/savedetails" method="post">
-      <!------------------------------------------>
-      <div class="row">
-        <div class="col-sm-6 form-group">
-          <label for="DescriptionOfGoods">Description Of Goods:</label>
-          <input type="text" class="form-control" id="DescriptionOfGoods" placeholder="Enter the Description Of Goods"
-            name="DescriptionOfGoods">
-        </div>
-        <!------------------------------------------>
-        <div class="col-sm-6 form-group">
-          <label for="HSNSAC">HSN/SAC code:</label>
-          <input type="text" class="form-control" id="HSNSAC" placeholder="Enter Item HSNSAC" name="HSNSAC">
-        </div>
-      </div>
-      <!------------------------------------------>
-      <!------------------------------------------>
-      <div class="row">
-        <div class="col-sm-4 form-group">
-          <label for="Qty">Quantity:</label>
-          <input type="text" class="form-control" id="Qty" placeholder="Enter Quantity of Goods Required" name="Qty"
-            required>
-        </div>
-        <!------------------------------------------>
-        <div class="col-sm-4 form-group">
-          <label for="RatePerUnit">Rate/Unit:</label>
-          <input type="text" class="form-control" id="RatePerUnit" placeholder="Enter Rate/Unit" name="RatePerUnit"
-            required>
-        </div>
-        <!------------------------------------------>
-        <div class="col-sm-4 form-group">
-          <label for="Gst">GST:</label>
-          <input type="text" class="form-control" id="Gst" placeholder="Enter GST Rate Applicable" name="Gst" required>
-        </div>
-        <!------------------------------------------>
-      </div>
+    <div id="buttons" align="center">
+      <button class="btn btn-outline-primary btn-lg active" id="inc"> Inclusive Rate </button>
+      <button class="btn btn-outline-primary btn-lg" id="exc"> Exclusive Rate </button>
+    </div>
+    <br>
+<!------------------------------------------>
+<!------------------------------------------>
+<!------------------------------------------>
+    <div id="inclusiveRate">
+      <h4 style="font-weight: bold;" align="center">Rate/Unit Inclusive of GST</h4>
       <br>
-      <div class="text-center">
-        <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
-      </div>
-    </form>
+      <form action="/savedetails/inc" method="post">
+        <!------------------------------------------>
+        <div class="row">
+          <div class="col-sm-6 form-group">
+            <label for="DescriptionOfGoods">Description Of Goods:</label>
+            <input type="text" class="form-control" id="DescriptionOfGoods" placeholder="Enter the Description Of Goods"
+              name="DescriptionOfGoods">
+          </div>
+          <!------------------------------------------>
+          <div class="col-sm-6 form-group">
+            <label for="HSNSAC">HSN/SAC code:</label>
+            <input type="text" class="form-control" id="HSNSAC" placeholder="Enter Item HSNSAC" name="HSNSAC">
+          </div>
+        </div>
+        <!------------------------------------------>
+        <!------------------------------------------>
+        <div class="row">
+          <div class="col-sm-4 form-group">
+            <label for="Qty">Quantity:</label>
+            <input type="text" class="form-control" id="Qty" placeholder="Enter Quantity of Goods Required" name="Qty"
+              required>
+          </div>
+          <!------------------------------------------>
+          <div class="col-sm-4 form-group">
+            <label for="IncRatePerUnit">Rate/Unit:</label>
+            <input type="text" class="form-control" id="IncRatePerUnit" placeholder="Enter Inclusive Rate/Unit" name="IncRatePerUnit"
+              required>
+          </div>
+          <!------------------------------------------>
+          <div class="col-sm-4 form-group">
+            <label for="Gst">GST:</label>
+            <input type="text" class="form-control" id="Gst" placeholder="Enter GST Rate Applicable" name="Gst" required>
+          </div>
+          <!------------------------------------------>
+        </div>
+        <br>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+        </div>
+      </form>
+    </div>
+<!------------------------------------------>
+<!------------------------------------------>
+<!------------------------------------------>
+    <div id="exclusiveRate">
+      <h4 style="font-weight: bold;" align="center" >Rate/Unit Exclusive of GST</h4>
+      <br>
+      <form action="/savedetails/exc" method="post">
+        <!------------------------------------------>
+        <div class="row">
+          <div class="col-sm-6 form-group">
+            <label for="DescriptionOfGoods">Description Of Goods:</label>
+            <input type="text" class="form-control" id="DescriptionOfGoods" placeholder="Enter the Description Of Goods"
+              name="DescriptionOfGoods">
+          </div>
+          <!------------------------------------------>
+          <div class="col-sm-6 form-group">
+            <label for="HSNSAC">HSN/SAC code:</label>
+            <input type="text" class="form-control" id="HSNSAC" placeholder="Enter Item HSNSAC" name="HSNSAC">
+          </div>
+        </div>
+        <!------------------------------------------>
+        <!------------------------------------------>
+        <div class="row">
+          <div class="col-sm-4 form-group">
+            <label for="Qty">Quantity:</label>
+            <input type="text" class="form-control" id="Qty" placeholder="Enter Quantity of Goods Required" name="Qty"
+              required>
+          </div>
+          <!------------------------------------------>
+          <div class="col-sm-4 form-group">
+            <label for="ExcRatePerUnit">Rate/Unit:</label>
+            <input type="text" class="form-control" id="ExcRatePerUnit" placeholder="Enter Exclusive Rate/Unit" name="ExcRatePerUnit"
+              required>
+          </div>
+          <!------------------------------------------>
+          <div class="col-sm-4 form-group">
+            <label for="Gst">GST:</label>
+            <input type="text" class="form-control" id="Gst" placeholder="Enter GST Rate Applicable" name="Gst" required>
+          </div>
+          <!------------------------------------------>
+        </div>
+        <br>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+        </div>
+      </form>
+    </div>
+<!------------------------------------------>
+<!------------------------------------------>
+<!------------------------------------------>
     <br>
     <br><br>
   </div>
